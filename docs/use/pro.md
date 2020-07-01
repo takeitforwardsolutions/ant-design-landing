@@ -1,81 +1,81 @@
 ---
 order: 4
 category:
-  zh-CN: 使用教程
   en-US: Tutorial
-title: 
-  zh-CN: pro 2.x 里使用
+  en-US: Tutorial
+title:
+  zh-CN: Pro 2.x
   en-US: Use in pro 2.x
 ---
 
-[Ant Design pro](https://pro.ant.design) 是 Ant Design 推出的一个开箱即用的中台前端/设计解决方案。
+[Ant Design pro](https://pro.ant.design) is an out-of-the-box front desk/design solution launched by Ant Design.
 
-## 文件路径
+## file path
 
-[Ant Design pro v2.x](https://pro.ant.design) 使用的为 umi 脚手架，文件目录同样为 `src/pages`, 首先我们需要将下载的 Home 文件包直接复制到 `pages` 文件夹下。
+[Ant Design pro v2.x](https://pro.ant.design) uses umi scaffolding, the file directory is also `src/pages`, first we need to copy the downloaded Home file package directly to `pages` Under the folder.
 
-## 修改路由
+## Modify routing
 
-文件目录：  `config/router.config.js`；
+File directory: `config/router.config.js`;
 
-修改 `dashboard` 的路由， 增加 `Home` 路由；
+Modify the route of `dashboard` and add the route of `Home`;
 
 ```js
 export default [
-+ { path: '/', component: './Home' }, // 增加 Home 路由
++ {path:'/', component:'./Home' }, // Add Home route
   // user
   {
-    path: '/user',
+    path:'/user',
     ...
   },
   // app
   {
--   path: '/',
-+   path: '/dashboard', // 更改 dashboard 路由；
-    component: '../layouts/BasicLayout',
+-path:'/',
++ path:'/dashboard', // Change the dashboard route;
+    component:'../layouts/BasicLayout',
     Routes: ['src/pages/Authorized'],
-    authority: ['admin', 'user'],
+    authority: ['admin','user'],
     ...
   },
 ];
 ```
 
-## 安装依赖
+## Install dependencies
 
-详细参考[开始使用里的安装依赖](docs/use/getting-started#安装依赖);
+For details, refer to [Installation Dependencies in Getting Started] (docs/use/getting-started#Installation Dependencies);
 
 ## CSS Modules
 
-多方案请查看 [umi 里使用的 css module](/docs/use/umi#CSS-Modules);
+For multiple solutions, please check [css module used in umi](/docs/use/umi#CSS-Modules);
 
-这里推荐使用 css-module 的 global;
+It is recommended to use the global of css-module;
 
-antMotionStyle.less 如下
+antMotionStyle.less is as follows
 
 ```
 :global {
-  @import './common.less';
-  @import './custom.less';
-  @import './content.less';
-  @import './nav0.less';
-  @import './banner0.less';
+  @import'./common.less';
+  @import'./custom.less';
+  @import'./content.less';
+  @import'./nav0.less';
+  @import'./banner0.less';
   ...
 }
 ```
 
-## 暂时先删除换肤插件
+## Temporarily delete the skinning plugin
 
-由于换肤插件需要重新 build 全部的 less, 暂时不支持 landing 的 less，所以我们先暂时删除换肤插件。
+Since the skinning plugin needs to rebuild all the less, temporarily does not support landing less, so we first temporarily delete the skinning plugin.
 
-文件目录：`config/config.js`;
+File directory: `config/config.js`;
 
-删除 `webpackPlugin` 相关的代码：
+Delete the code related to `webpackPlugin`:
 ```jsx
 // https://umijs.org/config/
-import os from 'os';
-import pageRoutes from './router.config';
-- import webpackPlugin from './plugin.config';
-import defaultSettings from '../src/defaultSettings';
+import os from'os';
+import pageRoutes from'./router.config';
+-import webpackPlugin from'./plugin.config';
+import defaultSettings from'../src/defaultSettings';
 
 ...
 
@@ -83,10 +83,10 @@ export default {
   // add for transfer to umi
   ...
   manifest: {
-    basePath: '/',
+    basePath:'/',
   },
 
-- chainWebpack: webpackPlugin,
+-chainWebpack: webpackPlugin,
 };
 
 ```
